@@ -1,6 +1,5 @@
 require 'rake'
 require 'rake/tasklib'
-require 'librarian-sync-puppet/update'
 
 class LibrarianSyncPuppet
   # Public: A Rake task that can be loaded and used with everything you need.
