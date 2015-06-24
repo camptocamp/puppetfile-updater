@@ -82,7 +82,12 @@ class LibrarianSyncPuppet
             forge_m = PuppetForge::Module.find(m)
             new_v = forge_m.releases[0].version
             if new_v.split('.')[0] != v.split('.')[0]
-              warn "W: Not upgrading #{m} from #{v} to new major version #{new_v}"
+              if @major
+                warn "W: #{m} has incompatible changes between #{v} and #{new_v}"
+                aug.set("#{mpath}/@version", forge_m.releases[0].version)
+              else
+                warn "W: Not upgrading #{m} from #{v} to new major version #{new_v}"
+              end
             else
               warn "W: #{m} got new features between #{v} and #{new_v}" if new_v.split('.')[1] != v.split('.')[1]
               aug.set("#{mpath}/@version", forge_m.releases[0].version)
