@@ -63,7 +63,7 @@ class LibrarianSyncPuppet
           # Update from GitHub
           aug.match("/files/Puppetfile/*[git=~regexp('.*/#{@user}/.*')]").each do |mpath|
             m = aug.get(mpath)
-            next if @module && @module != m.gsub(%r{.*[-/]}, '')
+            next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
 
             warn "W: #{m} is a fork!" unless m =~ /#{@user}/
 
@@ -77,7 +77,7 @@ class LibrarianSyncPuppet
           PuppetForge.user_agent = 'Librarian-Sync-Puppet/0.1.0'
           aug.match("/files/Puppetfile/*[label()!='#comment' and .=~regexp('#{@user}/.*') and @version]").each do |mpath|
             m = aug.get(mpath).gsub('/', '-')
-            next if @module && @module != m.gsub(%r{.*[-/]}, '')
+            next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
             v = aug.get("#{mpath}/@version")
             forge_m = PuppetForge::Module.find(m)
             new_v = forge_m.releases[0].version
