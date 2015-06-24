@@ -1,13 +1,13 @@
 require 'rake'
 require 'rake/tasklib'
 
-class LibrarianSyncPuppet
+class PuppetfileUpdater
   # Public: A Rake task that can be loaded and used with everything you need.
   #
   # Examples
   #
   #   require 'librarian-sync-puppet'
-  #   LibrarianSyncPuppet::RakeTask.new
+  #   PuppetfileUpdater::RakeTask.new
   class RakeTask < ::Rake::TaskLib
     include ::Rake::DSL if defined?(::Rake::DSL)
 
@@ -17,11 +17,11 @@ class LibrarianSyncPuppet
     attr_accessor :gh_login
     attr_accessor :gh_password
 
-    # Public: Initialise a new LibrarianSyncPuppet::RakeTask.
+    # Public: Initialise a new PuppetfileUpdater::RakeTask.
     #
     # Example
     #
-    #   LibrarianSyncPuppet::RakeTask.new
+    #   PuppetfileUpdater::RakeTask.new
     def initialize(*args, &task_block)
       @name = args.shift || :lint
 
@@ -74,7 +74,7 @@ class LibrarianSyncPuppet
           end
 
           # Update from Forge
-          PuppetForge.user_agent = 'Librarian-Sync-Puppet/0.1.0'
+          PuppetForge.user_agent = 'Puppetfile-Updater/0.1.0'
           aug.match("/files/Puppetfile/*[label()!='#comment' and .=~regexp('#{@user}/.*') and @version]").each do |mpath|
             m = aug.get(mpath).gsub('/', '-')
             next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')

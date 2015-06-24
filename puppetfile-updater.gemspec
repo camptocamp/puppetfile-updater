@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
-  spec.name        = 'librarian-sync-puppet'
+  spec.name        = 'puppetfile-updater'
   spec.version     = '0.1.0'
-  spec.homepage    = 'https://github.com/camptocamp/librarian-sync-puppet'
+  spec.homepage    = 'https://github.com/camptocamp/puppetfile-updater'
   spec.license     = 'Apache-2.0'
   spec.author      = 'Camptocamp'
   spec.email       = 'raphael.pinson@camptocamp.com'
