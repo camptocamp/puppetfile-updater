@@ -80,17 +80,18 @@ class PuppetfileUpdater
             next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
             v = aug.get("#{mpath}/@version")
             forge_m = PuppetForge::Module.find(m)
-            new_v = forge_m.releases[0].version
+            release = forge_m.releases.select { |r| r.deleted_at.nil? }
+            new_v = release.version
             if new_v.split('.')[0] != v.split('.')[0]
               if @major
                 warn "W: #{m} has incompatible changes between #{v} and #{new_v}"
-                aug.set("#{mpath}/@version", forge_m.releases[0].version)
+                aug.set("#{mpath}/@version", new_v)
               else
                 warn "W: Not upgrading #{m} from #{v} to new major version #{new_v}"
               end
             else
               warn "W: #{m} got new features between #{v} and #{new_v}" if new_v.split('.')[1] != v.split('.')[1]
-              aug.set("#{mpath}/@version", forge_m.releases[0].version)
+              aug.set("#{mpath}/@version", new_v)
             end
           end
 
