@@ -80,7 +80,7 @@ class PuppetfileUpdater
             next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
             v = aug.get("#{mpath}/@version")
             forge_m = PuppetForge::Module.find(m)
-            release = forge_m.releases.select { |r| r.deleted_at.nil? }
+            release = forge_m.releases.select { |r| r.deleted_at.nil? }[0]
             new_v = release.version
             if new_v.split('.')[0] != v.split('.')[0]
               if @major
