@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name        = 'puppetfile-updater'
-  spec.version     = '0.1.0'
+  spec.version     = '0.2.0'
   spec.homepage    = 'https://github.com/camptocamp/puppetfile-updater'
   spec.license     = 'Apache-2.0'
   spec.author      = 'Camptocamp'
@@ -9,6 +9,7 @@ Gem::Specification.new do |spec|
     'README.md',
     'LICENSE',
     'lib/**/*',
+    'augeas/**/*',
     'spec/**/*',
   ]
   spec.test_files  = Dir['spec/**/*']
