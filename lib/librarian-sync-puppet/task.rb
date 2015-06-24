@@ -41,8 +41,7 @@ class LibrarianSyncPuppet
         require 'octokit'
         require 'puppet_forge'
 
-        @user ||= '*'
-        @module ||= '*'
+        @user ||= '.*'
 
         gh_opts = @gh_login.nil? ? { } : {
           :login    => @gh_login,
