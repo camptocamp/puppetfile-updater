@@ -62,11 +62,11 @@ class LibrarianSyncPuppet
           aug.load!
 
           # Update from GitHub
-          aug.match("/files/Puppetfile/*[git=~regexp('.*/#{user}/.*')]").each do |mpath|
+          aug.match("/files/Puppetfile/*[git=~regexp('.*/#{@user}/.*')]").each do |mpath|
             m = aug.get(mpath)
-            next if mod && mod != m.gsub(%r{.*[-/]}, '')
+            next if @module && @module != m.gsub(%r{.*[-/]}, '')
 
-            warn "W: #{m} is a fork!" unless m =~ /#{user}/
+            warn "W: #{m} is a fork!" unless m =~ /#{@user}/
 
             git_url = aug.get("#{mpath}/git")
             repo = Octokit::Repository.from_url(git_url.gsub(/\.git$/, ''))
@@ -76,9 +76,9 @@ class LibrarianSyncPuppet
 
           # Update from Forge
           PuppetForge.user_agent = 'Librarian-Sync-Puppet/0.1.0'
-          aug.match("/files/Puppetfile/*[label()!='#comment' and .=~regexp('#{user}/.*') and @version]").each do |mpath|
+          aug.match("/files/Puppetfile/*[label()!='#comment' and .=~regexp('#{@user}/.*') and @version]").each do |mpath|
             m = aug.get(mpath).gsub('/', '-')
-            next if mod && mod != m.gsub(%r{.*[-/]}, '')
+            next if @module && @module != m.gsub(%r{.*[-/]}, '')
             v = aug.get("#{mpath}/@version")
             forge_m = PuppetForge::Module.find(m)
             new_v = forge_m.releases[0].version
