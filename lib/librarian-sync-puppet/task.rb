@@ -11,6 +11,9 @@ class LibrarianSyncPuppet
   class RakeTask < ::Rake::TaskLib
     include ::Rake::DSL if defined?(::Rake::DSL)
 
+    attr_accessor :gh_login
+    attr_accessor :gh_password
+
     # Public: Initialise a new LibrarianSyncPuppet::RakeTask.
     #
     # Example
