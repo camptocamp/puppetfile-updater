@@ -50,9 +50,9 @@ class LibrarianSyncPuppet
         }
         github = Octokit::Client.new gh_opts
 
-        basedir = File.dirname(__FILE__)
-        lens_dir = File.expand_path(File.join(basedir, 'augeas/lenses'))
-        Augeas.open(basedir, lens_dir, Augeas::NO_MODL_AUTOLOAD) do |aug|
+        libdir = File.dirname(__FILE__)
+        lens_dir = File.expand_path(File.join(libdir, '..', '..', 'augeas', 'lenses'))
+        Augeas.open(Dir.pwd, lens_dir, Augeas::NO_MODL_AUTOLOAD) do |aug|
           aug.transform(
             :incl => '/Puppetfile',
             :excl => [],
