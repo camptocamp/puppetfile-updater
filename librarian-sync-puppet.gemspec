@@ -17,5 +17,8 @@ Gem::Specification.new do |spec|
     Keep your Puppet file up-to-date with latest versions from the Forge and GitHub.
   EOF
 
-  spec.add_development_dependency 'rake'
+  spec.add_dependency 'rake'
+  spec.add_dependency 'ruby-augeas'
+  spec.add_dependency 'octokit'
+  spec.add_dependency 'puppet_forge'
 end
