@@ -8,7 +8,7 @@ class LibrarianSyncPuppet
   #
   #   require 'librarian-sync-puppet'
   #   LibrarianSyncPuppet::RakeTask.new
-  class RakeTask < ::RakeTask::TaskLib
+  class RakeTask < ::Rake::TaskLib
     include ::Rake::DSL if defined?(::Rake::DSL)
 
     # Public: Initialise a new LibrarianSyncPuppet::RakeTask.
