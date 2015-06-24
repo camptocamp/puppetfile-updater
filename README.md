@@ -12,3 +12,28 @@ Puppetfile is a cool format, used by [librarian-puppet](https://github.com/rodje
 However, keeping it up-to-date with newer versions of said modules can be a difficult task.
 
 This gem provides rake tasks to ease this job, by connecting to the Puppet Forge and GitHub and fetching the new versions or references for you.
+
+
+## Simple usage
+
+In your Rakefile:
+
+```ruby
+require 'puppetfile-updater/task'
+
+# Update all modules, avoid major version updates
+PuppetfileUpdater::RakeTask.new :sync_refs do |config|
+  # This is required to avoid hitting the GitHub connection rate
+  config.gh_login    = 'github_robot'
+  config.gh_password = 'github_password'
+end
+
+# Only update Camptocamp modules, including major version updates
+PuppetfileUpdater::RakeTask.new :sync_c2c_refs do |config|
+  config.user        = 'camptocamp'
+  config.gh_login    = 'github_robot'
+  config.gh_password = 'github_password'
+  config.major       = true
+end
+```
+
