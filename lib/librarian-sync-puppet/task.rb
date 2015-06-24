@@ -11,6 +11,9 @@ class LibrarianSyncPuppet
   class RakeTask < ::Rake::TaskLib
     include ::Rake::DSL if defined?(::Rake::DSL)
 
+    attr_accessor :user
+    attr_accessor :module
+    attr_accessor :major
     attr_accessor :gh_login
     attr_accessor :gh_password
 
@@ -38,6 +41,9 @@ class LibrarianSyncPuppet
         require 'octokit'
         require 'puppet_forge'
 
+        @user ||= '*'
+        @module ||= '*'
+
         gh_opts = @gh_login.nil? ? { } : {
           :login    => @gh_login,
           :password => @gh_password,
@@ -54,8 +60,8 @@ class LibrarianSyncPuppet
             :name => 'Puppetfile',
           )
           aug.load!
-          update_github_refs(aug, github, user)
-          update_forge_refs(aug, user)
+          update_github_refs(aug, github)
+          update_forge_refs(aug)
           aug.save!
         end
       end
