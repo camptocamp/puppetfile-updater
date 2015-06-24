@@ -1,0 +1,17 @@
+language: ruby
+sudo: false
+cache: bundler
+rvm:
+- 2.1.5
+matrix:
+  fast_finish: true
+deploy:
+  provider: rubygems
+  api_key:
+    secure: "tmM8pZEx7f3/jtT8Xz7UqknLkc1KuTZDc+cEcJmfynv13x38z+wGODQ4/1fDA2BQIdF2SZnXdqIM2ht+2ZlReWlXezMduw/M5N3KMDDpWwYMmC8S7ZmNNRERqQKynb9Zk6hQXMmA6/0rFgfxGSrWP+qChQU+hEYLFD6iKDmwSjKuG0t17Z/gftt8vxmu/Kk4q5eAYRDd1EjHx7cNwizi/YNsCAoT3cP2Mrq280HdBGYsbMrJiGvOlo5Jc5RECqvQu37sunuBxfR9UXDGZAdFAEkjB98x7SNDREU/YxvfuKGfHSP6xhOMrizYYkB8JsYC15xD+DpWgmfTURB19vQfWB0/aIiNnGYTybBjrzWhRo7A7qEaJdFNlFAOXcSt4CUBI0l1XdSUFX0ny0VTgVj9l4W8Z6UKCBeVoM6CtLTREDWofjGmMCUdAr4dKM+98bNt7myPdZbbHwl2maM3Mi38Mtsq/pi8wAI4qXSRv6l7hdXbJg1M1B5XLcSINcWSVJXDqOAEUJEVONS32N2wWvHi3VeS72SPuDzCwiwVMq5TkPKwcMoLlxZyo//J8Wi6hqgWaMz8rg/XQfwutZXPV1Ywt8V4gyFU2pWKPpMQKiJOpC1HKelnMVnrIk8ILSYd6HeLvzGZW0zDLCR2WUD5850Nt4pNhhjm/+z97nXuCO6+izw="
+  on:
+    rvm: 2.1.5
+    tags: true
+    all_branches: true
+notifications:
+  email: false
