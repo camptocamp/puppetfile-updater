@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name        = 'puppetfile-updater'
-  spec.version     = '0.2.1'
+  spec.version     = '0.3.0'
   spec.homepage    = 'https://github.com/camptocamp/puppetfile-updater'
   spec.license     = 'Apache-2.0'
   spec.author      = 'Camptocamp'
