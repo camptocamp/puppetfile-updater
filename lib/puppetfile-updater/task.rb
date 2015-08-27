@@ -60,6 +60,14 @@ class PuppetfileUpdater
           )
           aug.load!
 
+          error_path = '/augeas/files/Puppetfile/error'
+          unless aug.match('/augeas/files/Puppetfile/error').size == 0
+            msg = "Failed to parse Puppetfile at line #{aug.get(error_path+'/line')}, "
+            msg << "character #{aug.get(error_path+'/char')}: "
+            msg << aug.get('/augeas/files/Puppetfile/error/message')
+            abort msg
+          end
+
           # Update from GitHub
           aug.match("/files/Puppetfile/*[git=~regexp('.*/#{@user}/.*')]").each do |mpath|
             m = aug.get(mpath)
