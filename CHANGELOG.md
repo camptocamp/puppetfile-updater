@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.3.1](https://github.com/camptocamp/puppetfile-updater/tree/0.3.1) (2015-08-27)
+[Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.0...0.3.1)
+
+**Closed issues:**
+
+- Module names might not contain a separator [\#4](https://github.com/camptocamp/puppetfile-updater/issues/4)
+
 ## [0.3.0](https://github.com/camptocamp/puppetfile-updater/tree/0.3.0) (2015-08-27)
 [Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.2.1...0.3.0)
 
