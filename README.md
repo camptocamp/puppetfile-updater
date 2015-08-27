@@ -33,6 +33,7 @@ PuppetfileUpdater::RakeTask.new :sync_c2c_refs do |config|
   config.gh_login    = 'github_robot'
   config.gh_password = 'github_password'
   config.major       = true
+  config.debug       = true
 end
 ```
 

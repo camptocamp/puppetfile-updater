@@ -16,6 +16,7 @@ class PuppetfileUpdater
     attr_accessor :major
     attr_accessor :gh_login
     attr_accessor :gh_password
+    attr_accessor :debug
 
     # Public: Initialise a new PuppetfileUpdater::RakeTask.
     #
@@ -71,25 +72,32 @@ class PuppetfileUpdater
           # Update from GitHub
           aug.match("/files/Puppetfile/*[git=~regexp('.*/#{@user}/.*')]").each do |mpath|
             m = aug.get(mpath)
+            puts "D: Considering #{m} for git update" if @debug
             next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
+            puts "D: #{m} selected by filters" if @debug
 
             warn "W: #{m} is a fork!" unless m =~ /#{@user}/
 
             git_url = aug.get("#{mpath}/git")
             repo = Octokit::Repository.from_url(git_url.gsub(/\.git$/, ''))
             commits = github.commits(repo)
-            aug.set("#{mpath}/ref", commits[0].sha[0...7])
+            ref = commits[0].sha[0...7]
+            puts "D: New ref for #{m} is #{ref}" if @debug
+            aug.set("#{mpath}/ref", ref)
           end
 
           # Update from Forge
           PuppetForge.user_agent = 'Puppetfile-Updater/0.1.0'
           aug.match("/files/Puppetfile/*[label()!='#comment' and .=~regexp('#{@user}/.*') and @version]").each do |mpath|
             m = aug.get(mpath).gsub('/', '-')
+            puts "D: Considering #{m} for forge update" if @debug
             next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
+            puts "D: #{m} selected by filters"
             v = aug.get("#{mpath}/@version")
             forge_m = PuppetForge::Module.find(m)
             release = forge_m.releases.select { |r| r.deleted_at.nil? }[0]
             new_v = release.version
+            puts "D: New version for #{m} is #{new_v}" if @debug
             if new_v.split('.')[0] != v.split('.')[0]
               if @major
                 warn "W: #{m} has incompatible changes between #{v} and #{new_v}"
