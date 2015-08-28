@@ -92,7 +92,7 @@ class PuppetfileUpdater
             m = aug.get(mpath).gsub('/', '-')
             puts "D: Considering #{m} for forge update" if @debug
             next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
-            puts "D: #{m} selected by filters"
+            puts "D: #{m} selected by filters" if @debug
             v = aug.get("#{mpath}/@version")
             forge_m = PuppetForge::Module.find(m)
             release = forge_m.releases.select { |r| r.deleted_at.nil? }[0]
