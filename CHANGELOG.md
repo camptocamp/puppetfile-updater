@@ -1,9 +1,16 @@
 # Change Log
 
+## [0.3.2](https://github.com/camptocamp/puppetfile-updater/tree/0.3.2) (2015-10-08)
+[Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.1...0.3.2)
+
+**Fixed bugs:**
+
+- Add boolean check for one of the debug messages [\#5](https://github.com/camptocamp/puppetfile-updater/pull/5) ([djjudas21](https://github.com/djjudas21))
+
 ## [0.3.1](https://github.com/camptocamp/puppetfile-updater/tree/0.3.1) (2015-08-27)
 [Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.0...0.3.1)
 
-**Closed issues:**
+**Fixed bugs:**
 
 - Module names might not contain a separator [\#4](https://github.com/camptocamp/puppetfile-updater/issues/4)
 
