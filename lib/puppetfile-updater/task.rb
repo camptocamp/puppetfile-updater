@@ -62,10 +62,10 @@ class PuppetfileUpdater
           aug.load!
 
           error_path = '/augeas/files/Puppetfile/error'
-          unless aug.match('/augeas/files/Puppetfile/error').size == 0
+          unless aug.match(error_path).size == 0
             msg = "Failed to parse Puppetfile at line #{aug.get(error_path+'/line')}, "
             msg << "character #{aug.get(error_path+'/char')}: "
-            msg << aug.get('/augeas/files/Puppetfile/error/message')
+            msg << aug.get(error_path+'/message')
             abort msg
           end
 
