@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.4.0](https://github.com/camptocamp/puppetfile-updater/tree/0.4.0) (2016-06-17)
+[Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.2...0.4.0)
+
+- Warn if Forge module has version startin with 99
+
 ## [0.3.2](https://github.com/camptocamp/puppetfile-updater/tree/0.3.2) (2015-10-08)
 [Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.1...0.3.2)
 
