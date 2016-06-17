@@ -98,6 +98,8 @@ class PuppetfileUpdater
             release = forge_m.releases.select { |r| r.deleted_at.nil? }[0]
             new_v = release.version
             puts "D: New version for #{m} is #{new_v}" if @debug
+
+            warn "W: #{m} looks abandoned (version = #{new_v})" if new_v =~ /^99/
             if new_v.split('.')[0] != v.split('.')[0]
               if @major
                 warn "W: #{m} has incompatible changes between #{v} and #{new_v}"
