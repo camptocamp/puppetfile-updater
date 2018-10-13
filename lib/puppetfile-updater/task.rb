@@ -70,7 +70,7 @@ class PuppetfileUpdater
           end
 
           # Update from GitHub
-          aug.match("/files/Puppetfile/*[git=~regexp('.*/#{@user}/.*')]").each do |mpath|
+          aug.match("/files/Puppetfile/*[git=~regexp('.*/#{@user}[/-].*')]").each do |mpath|
             m = aug.get(mpath)
             puts "D: Considering #{m} for git update" if @debug
             next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
@@ -88,7 +88,7 @@ class PuppetfileUpdater
 
           # Update from Forge
           PuppetForge.user_agent = 'Puppetfile-Updater/0.1.0'
-          aug.match("/files/Puppetfile/*[label()!='#comment' and .=~regexp('#{@user}/.*') and @version]").each do |mpath|
+          aug.match("/files/Puppetfile/*[label()!='#comment' and .=~regexp('#{@user}[/-].*') and @version]").each do |mpath|
             m = aug.get(mpath).gsub('/', '-')
             puts "D: Considering #{m} for forge update" if @debug
             next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
