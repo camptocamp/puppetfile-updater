@@ -1,5 +1,12 @@
 # Change Log
 
+## [0.4.1](https://github.com/camptocamp/puppetfile-updater/tree/0.4.1) (2018-10-15)
+[Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.4.0...0.4.1)
+
+**Fixed bugs:**
+
+- Allow - in between author and modulename [\#17](https://github.com/camptocamp/puppetfile-updater/pull/17) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [0.4.0](https://github.com/camptocamp/puppetfile-updater/tree/0.4.0) (2016-06-17)
 [Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.2...0.4.0)
 
