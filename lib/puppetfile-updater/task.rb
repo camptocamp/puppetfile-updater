@@ -14,6 +14,7 @@ class PuppetfileUpdater
     attr_accessor :user
     attr_accessor :module
     attr_accessor :major
+    attr_accessor :skip_git
     attr_accessor :gh_login
     attr_accessor :gh_password
     attr_accessor :debug
@@ -69,21 +70,23 @@ class PuppetfileUpdater
             abort msg
           end
 
-          # Update from GitHub
-          aug.match("/files/Puppetfile/*[git=~regexp('.*/#{@user}[/-].*')]").each do |mpath|
-            m = aug.get(mpath)
-            puts "D: Considering #{m} for git update" if @debug
-            next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
-            puts "D: #{m} selected by filters" if @debug
+          unless @skip_git
+            # Update from GitHub
+            aug.match("/files/Puppetfile/*[git=~regexp('.*/#{@user}[/-].*')]").each do |mpath|
+              m = aug.get(mpath)
+              puts "D: Considering #{m} for git update" if @debug
+              next if !@module.nil? && @module != m.gsub(%r{.*[-/]}, '')
+              puts "D: #{m} selected by filters" if @debug
 
-            warn "W: #{m} is a fork!" unless m =~ /#{@user}/
+              warn "W: #{m} is a fork!" unless m =~ /#{@user}/
 
-            git_url = aug.get("#{mpath}/git")
-            repo = Octokit::Repository.from_url(git_url.gsub(/\.git$/, ''))
-            commits = github.commits(repo)
-            ref = commits[0].sha[0...7]
-            puts "D: New ref for #{m} is #{ref}" if @debug
-            aug.set("#{mpath}/ref", ref)
+              git_url = aug.get("#{mpath}/git")
+              repo = Octokit::Repository.from_url(git_url.gsub(/\.git$/, ''))
+              commits = github.commits(repo)
+              ref = commits[0].sha[0...7]
+              puts "D: New ref for #{m} is #{ref}" if @debug
+              aug.set("#{mpath}/ref", ref)
+            end
           end
 
           # Update from Forge
