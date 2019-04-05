@@ -1,5 +1,19 @@
 # Change Log
 
+## [0.5.0](https://github.com/camptocamp/puppetfile-updater/tree/0.5.0) (2019-04-05)
+[Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.4.1...0.5.0)
+
+**Fixed bugs:**
+
+- augeas lens don't support latest Puppetfile syntax [\#19](https://github.com/camptocamp/puppetfile-updater/issues/19)
+- skip references to branches [\#16](https://github.com/camptocamp/puppetfile-updater/issues/16)
+- Augeas lens should not fail on comments [\#13](https://github.com/camptocamp/puppetfile-updater/issues/13)
+- Augeas lens should match booleans [\#12](https://github.com/camptocamp/puppetfile-updater/issues/12)
+
+**Merged pull requests:**
+
+- add an option to skip git modules [\#18](https://github.com/camptocamp/puppetfile-updater/pull/18) ([vchepkov](https://github.com/vchepkov))
+
 ## [0.4.1](https://github.com/camptocamp/puppetfile-updater/tree/0.4.1) (2018-10-15)
 [Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.4.0...0.4.1)
 
@@ -8,9 +22,14 @@
 - Allow - in between author and modulename [\#17](https://github.com/camptocamp/puppetfile-updater/pull/17) ([bastelfreak](https://github.com/bastelfreak))
 
 ## [0.4.0](https://github.com/camptocamp/puppetfile-updater/tree/0.4.0) (2016-06-17)
-[Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.2...0.4.0)
+[Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.3...0.4.0)
 
-- Warn if Forge module has version startin with 99
+## [0.3.3](https://github.com/camptocamp/puppetfile-updater/tree/0.3.3) (2016-04-22)
+[Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.2...0.3.3)
+
+**Merged pull requests:**
+
+- Add moduledir to augeas file [\#9](https://github.com/camptocamp/puppetfile-updater/pull/9) ([TheMeier](https://github.com/TheMeier))
 
 ## [0.3.2](https://github.com/camptocamp/puppetfile-updater/tree/0.3.2) (2015-10-08)
 [Full Changelog](https://github.com/camptocamp/puppetfile-updater/compare/0.3.1...0.3.2)
