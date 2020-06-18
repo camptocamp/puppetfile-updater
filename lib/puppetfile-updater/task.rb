@@ -17,6 +17,7 @@ class PuppetfileUpdater
     attr_accessor :skip_git
     attr_accessor :gh_login
     attr_accessor :gh_password
+    attr_accessor :gh_token
     attr_accessor :debug
 
     # Public: Initialise a new PuppetfileUpdater::RakeTask.
@@ -45,10 +46,21 @@ class PuppetfileUpdater
 
         @user ||= '.*'
 
-        gh_opts = @gh_login.nil? ? { } : {
-          :login    => @gh_login,
-          :password => @gh_password,
-        }
+        gh_opts = {}
+
+        unless @gh_user.nil?
+          gh_opts = {
+            :login    => @gh_login,
+            :password => @gh_password,
+          }
+        end
+
+        unless @gh_token.nil?
+          gh_opts = {
+            :access_token => @gh_token,
+          }
+        end
+
         github = Octokit::Client.new gh_opts
 
         libdir = File.dirname(__FILE__)
